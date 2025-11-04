@@ -1,45 +1,338 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f0e6;
-  margin: 0;
-  padding: 0;
-}
-
-header {
-  background-color: #800000;
-  color: white;
-  padding: 20px;
-  text-align: center;
-}
-
-nav {
-  background-color: #cfae88;
-  padding: 10px;
-  text-align: center;
-}
-
-nav a {
-  margin: 0 15px;
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-}
-
-section {
-  padding: 20px;
-}
-
-.producto {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 10px 0;
-  background-color: #fff;
-}
-
-footer {
-  background-color: #800000;
-  color: white;
-  text-align: center;
-  padding: 10px;
-  position: relative;
-}
+diff --git a/estilo.css b/estilo.css
+index 9ef5b32c9647041e6220cf43b166d2182a95ad1a..24f3eae9f586365ee18f5be198220834ff0d173f 100644
+--- a/estilo.css
++++ b/estilo.css
+@@ -1,45 +1,306 @@
++:root {
++  --color-principal: #7f1d1d;
++  --color-secundario: #c6a77d;
++  --color-fondo: #f7f3ed;
++  --color-texto: #2f2a26;
++  --color-claro: #ffffff;
++  --color-acento: #0f766e;
++  --ancho-maximo: 1100px;
++}
++
++* {
++  box-sizing: border-box;
++}
++
+ body {
+-  font-family: Arial, sans-serif;
+-  background-color: #f4f0e6;
++  font-family: "Montserrat", "Segoe UI", Arial, sans-serif;
++  background-color: var(--color-fondo);
++  color: var(--color-texto);
+   margin: 0;
+-  padding: 0;
++  line-height: 1.6;
+ }
+ 
+-header {
+-  background-color: #800000;
+-  color: white;
+-  padding: 20px;
+-  text-align: center;
++img {
++  max-width: 100%;
++  display: block;
++  border-radius: 12px;
+ }
+ 
+-nav {
+-  background-color: #cfae88;
+-  padding: 10px;
++.hero {
++  position: relative;
++  min-height: 60vh;
++  display: flex;
++  align-items: center;
++  justify-content: center;
+   text-align: center;
++  padding: 4rem 1.5rem;
++  color: var(--color-claro);
++  background-image: url("https://images.unsplash.com/photo-1526481280695-3c46917b9921?auto=format&fit=crop&w=1600&q=60");
++  background-size: cover;
++  background-position: center;
++}
++
++.hero__overlay {
++  position: absolute;
++  inset: 0;
++  background: linear-gradient(135deg, rgba(127, 29, 29, 0.85), rgba(15, 118, 110, 0.6));
+ }
+ 
+-nav a {
+-  margin: 0 15px;
++.hero__contenido {
++  position: relative;
++  max-width: 750px;
++  z-index: 1;
++}
++
++.hero__categoria {
++  letter-spacing: 0.1em;
++  text-transform: uppercase;
++  font-size: 0.85rem;
++  margin-bottom: 0.75rem;
++  opacity: 0.85;
++}
++
++.hero__titulo {
++  font-size: clamp(2.5rem, 5vw, 3.5rem);
++  margin: 0 0 1rem;
++}
++
++.hero__descripcion {
++  font-size: 1.1rem;
++  margin-bottom: 1.5rem;
++}
++
++.boton {
++  display: inline-block;
++  background-color: var(--color-acento);
++  color: var(--color-claro);
+   text-decoration: none;
+-  color: #333;
+-  font-weight: bold;
++  padding: 0.75rem 1.75rem;
++  border-radius: 999px;
++  font-weight: 600;
++  transition: transform 0.2s ease, box-shadow 0.2s ease;
+ }
+ 
+-section {
+-  padding: 20px;
++.boton:hover {
++  transform: translateY(-2px);
++  box-shadow: 0 10px 20px rgba(15, 118, 110, 0.2);
+ }
+ 
+-.producto {
+-  border: 1px solid #ccc;
+-  padding: 10px;
+-  margin: 10px 0;
+-  background-color: #fff;
++.boton--secundario {
++  background-color: transparent;
++  border: 2px solid var(--color-claro);
+ }
+ 
+-footer {
+-  background-color: #800000;
+-  color: white;
+-  text-align: center;
+-  padding: 10px;
++.navegacion {
++  display: flex;
++  flex-wrap: wrap;
++  justify-content: center;
++  gap: 1.5rem;
++  padding: 1rem 1.5rem;
++  background-color: var(--color-claro);
++  position: sticky;
++  top: 0;
++  z-index: 10;
++  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
++}
++
++.navegacion a {
++  color: var(--color-texto);
++  font-weight: 600;
++  text-decoration: none;
++  letter-spacing: 0.03em;
+   position: relative;
++  padding-bottom: 0.25rem;
++}
++
++.navegacion a::after {
++  content: "";
++  position: absolute;
++  left: 0;
++  bottom: 0;
++  width: 100%;
++  height: 2px;
++  background-color: var(--color-acento);
++  transform: scaleX(0);
++  transform-origin: left;
++  transition: transform 0.2s ease;
++}
++
++.navegacion a:hover::after {
++  transform: scaleX(1);
++}
++
++main {
++  max-width: var(--ancho-maximo);
++  margin: 0 auto;
++  padding: 2rem 1.5rem 4rem;
++}
++
++.seccion {
++  margin-bottom: 3.5rem;
++}
++
++.seccion h2 {
++  margin-bottom: 1.5rem;
++  font-size: clamp(1.8rem, 4vw, 2.3rem);
++  color: var(--color-principal);
++}
++
++.seccion--destacada {
++  display: grid;
++  gap: 2.5rem;
++  background: var(--color-claro);
++  padding: 2.5rem;
++  border-radius: 20px;
++  box-shadow: 0 15px 45px rgba(127, 29, 29, 0.15);
++}
++
++.seccion--destacada .seccion__contenido {
++  display: flex;
++  flex-direction: column;
++  gap: 1rem;
++}
++
++.seccion__aside {
++  background-color: rgba(198, 167, 125, 0.15);
++  padding: 1.5rem;
++  border-radius: 16px;
++  border-left: 4px solid var(--color-secundario);
++}
++
++.datos-principales {
++  list-style: none;
++  padding: 0;
++  margin: 1rem 0 0;
++  display: grid;
++  gap: 0.75rem;
++}
++
++.datos-principales span {
++  font-weight: 600;
++  color: var(--color-acento);
++}
++
++.grid-tarjetas {
++  display: grid;
++  gap: 1.75rem;
++  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
++}
++
++.tarjeta {
++  background-color: var(--color-claro);
++  padding: 1.75rem;
++  border-radius: 18px;
++  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
++  transition: transform 0.2s ease, box-shadow 0.2s ease;
++}
++
++.tarjeta:hover {
++  transform: translateY(-4px);
++  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
++}
++
++.tarjeta h3 {
++  margin-top: 0;
++  color: var(--color-acento);
++}
++
++.turismo-grid {
++  display: grid;
++  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
++  gap: 1.5rem;
++  margin-bottom: 2rem;
++}
++
++.galeria {
++  display: grid;
++  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
++  gap: 1.5rem;
++}
++
++.galeria figure {
++  background-color: var(--color-claro);
++  padding: 1rem;
++  border-radius: 16px;
++  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
++}
++
++.galeria figcaption {
++  margin-top: 0.75rem;
++  font-size: 0.9rem;
++  color: #5a524b;
++}
++
++.seccion--clara {
++  background-color: rgba(255, 255, 255, 0.8);
++  padding: 2.5rem;
++  border-radius: 20px;
++  box-shadow: inset 0 0 0 1px rgba(198, 167, 125, 0.25);
++}
++
++.instituciones {
++  display: grid;
++  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
++  gap: 1.5rem;
++}
++
++.instituciones ul {
++  padding-left: 1.25rem;
++}
++
++.informacion-grid {
++  display: grid;
++  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
++  gap: 1.5rem;
++}
++
++.informacion-grid__item {
++  background-color: var(--color-claro);
++  padding: 1.5rem;
++  border-radius: 16px;
++  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
++}
++
++.emergencias {
++  list-style: none;
++  padding: 0;
++  margin: 0;
++  display: grid;
++  gap: 0.5rem;
++}
++
++.emergencias span {
++  font-weight: 600;
++  color: var(--color-acento);
++}
++
++.pie {
++  display: flex;
++  flex-wrap: wrap;
++  justify-content: space-between;
++  align-items: center;
++  gap: 1rem;
++  background-color: var(--color-principal);
++  color: var(--color-claro);
++  padding: 1.75rem 1.5rem;
++}
++
++.pie p {
++  margin: 0.25rem 0;
++}
++
++@media (max-width: 768px) {
++  .seccion--destacada {
++    padding: 1.75rem;
++  }
++
++  .seccion__aside {
++    border-left-width: 0;
++    border-top: 4px solid var(--color-secundario);
++  }
++
++  .pie {
++    justify-content: center;
++    text-align: center;
++  }
+ }
