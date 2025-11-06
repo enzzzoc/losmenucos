@@ -1,266 +1,54 @@
- (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
-diff --git a/index.html b/index.html
-index a4f9d8579dffc6866b69d5a5ad824e96f608b6ae..fd66b16b8b80d9a76f92ea12255a822f3a83cc82 100644
---- a/index.html
-+++ b/index.html
-@@ -1,54 +1,221 @@
- <!DOCTYPE html>
- <html lang="es">
- <head>
-   <meta charset="UTF-8">
--  <title>Los Menucos</title>
-+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-+  <title>Los Menucos - Portal Turístico y Comunitario</title>
-   <link rel="stylesheet" href="estilo.css">
- </head>
- <body>
--
--  <header>
--    <h1>Los Menucos</h1>
--    <p>Turismo, productos locales e instituciones</p>
-+  <header class="hero">
-+    <div class="hero__overlay"></div>
-+    <div class="hero__contenido">
-+      <p class="hero__categoria">Provincia de Río Negro · Región Sur Patagónica</p>
-+      <h1 class="hero__titulo">Los Menucos</h1>
-+      <p class="hero__descripcion">
-+        Comunidad patagónica forjada entre mesetas volcánicas, tradiciones ganaderas y calor humano.
-+        Descubrí sus paisajes, sabores e instituciones.
-+      </p>
-+      <a class="boton" href="#turismo">Planificá tu visita</a>
-+    </div>
-   </header>
- 
--  <nav>
-+  <nav class="navegacion">
-+    <a href="#presentacion">Presentación</a>
-+    <a href="#historia">Historia</a>
-     <a href="#turismo">Turismo</a>
-     <a href="#productos">Productos</a>
-     <a href="#instituciones">Instituciones</a>
-+    <a href="#informacion">Información útil</a>
-   </nav>
- 
--  <section id="turismo">
--    <h2>Turismo</h2>
--    <p>Descubrí los paisajes, la cultura y la historia de Los Menucos.</p>
--  </section>
--
--  <section id="productos">
--    <h2>Artículos en venta</h2>
--    <div class="producto">
--      <h3>Mermelada de Rosa Mosqueta</h3>
--      <p>Producto artesanal </p>
--      <p>Vendedor: </p>
--    </div>
--    <div class="producto">
--      <h3>Lana Natural Hilada</h3>
--      <p>Hecho a mano - </p>
--      <p>Vendedor: Cooperativa Textil</p>
-+  <main>
-+    <section id="presentacion" class="seccion seccion--destacada">
-+      <div class="seccion__contenido">
-+        <h2>Un punto clave en la estepa rionegrina</h2>
-+        <p>
-+          Los Menucos es una localidad ubicada en el corazón de la Región Sur de la provincia de Río Negro.
-+          Su identidad está fuertemente ligada a la ganadería ovina, a la producción de lana de alta calidad y
-+          a la hospitalidad de su gente. Se encuentra sobre la emblemática Ruta Nacional 23, uniendo la cordillera
-+          con la costa atlántica.
-+        </p>
-+        <ul class="datos-principales">
-+          <li><span>Población:</span> 5.000 habitantes (aprox.)</li>
-+          <li><span>Altitud:</span> 870 m s. n. m.</li>
-+          <li><span>Clima:</span> Frío semiárido con veranos templados</li>
-+          <li><span>Distancias:</span> 375 km a Viedma · 260 km a Bariloche</li>
-+        </ul>
-+      </div>
-+      <aside class="seccion__aside">
-+        <h3>Cómo llegar</h3>
-+        <p>
-+          • <strong>Por ruta:</strong> RN 23 (pavimentada) conecta con San Antonio Oeste y San Carlos de Bariloche.<br>
-+          • <strong>En tren:</strong> Servicio regional del Tren Patagónico.<br>
-+          • <strong>En ómnibus:</strong> Líneas provinciales y de media distancia.
-+        </p>
-+      </aside>
-+    </section>
-+
-+    <section id="historia" class="seccion">
-+      <h2>Historia en síntesis</h2>
-+      <div class="grid-tarjetas">
-+        <article class="tarjeta">
-+          <h3>Primeros pobladores</h3>
-+          <p>
-+            El área estuvo habitada ancestralmente por pueblos originarios tehuelches. A fines del siglo XIX
-+            comenzaron a asentarse crianceros y comerciantes atraídos por los campos de pastoreo natural.
-+          </p>
-+        </article>
-+        <article class="tarjeta">
-+          <h3>Fundación</h3>
-+          <p>
-+            La llegada del ferrocarril en 1916 impulsó la formación del paraje. En 1921 el gobierno provincial
-+            reconoció oficialmente a Los Menucos como colonia agrícola-ganadera.
-+          </p>
-+        </article>
-+        <article class="tarjeta">
-+          <h3>Desarrollo regional</h3>
-+          <p>
-+            Durante el siglo XX se afianzó como centro de acopio de lana y servicios para la región sur. La obra
-+            de pavimentación de la RN 23 consolidó su rol estratégico y favoreció el turismo rural.
-+          </p>
-+        </article>
-+      </div>
-+    </section>
-+
-+    <section id="turismo" class="seccion">
-+      <h2>Experiencias turísticas</h2>
-+      <div class="turismo-grid">
-+        <article>
-+          <h3>Geositio Ojo de Agua</h3>
-+          <p>
-+            Formación volcánica con una laguna de intenso color turquesa. Ideal para caminatas y observación
-+            geológica. Se recomienda visitar con guías habilitados locales.
-+          </p>
-+        </article>
-+        <article>
-+          <h3>Estancias de agroturismo</h3>
-+          <p>
-+            Participá de esquilas, degustá chivitos patagónicos y conocé las técnicas de tejido artesanal en
-+            estancias familiares que abren sus puertas durante todo el año.
-+          </p>
-+        </article>
-+        <article>
-+          <h3>Fiestas populares</h3>
-+          <p>
-+            La <strong>Fiesta Provincial de la Piedra Laja</strong> celebra la actividad minera y artística local con
-+            espectáculos musicales, artesanías y gastronomía típica en el mes de febrero.
-+          </p>
-+        </article>
-+      </div>
-+      <div class="galeria">
-+        <figure>
-+          <img src="https://images.unsplash.com/photo-1541450805268-582c981c1d6b?auto=format&fit=crop&w=900&q=60" alt="Paisaje patagónico" />
-+          <figcaption>Atardecer en la meseta patagónica.</figcaption>
-+        </figure>
-+        <figure>
-+          <img src="https://images.unsplash.com/photo-1526367790999-0150786686a2?auto=format&fit=crop&w=900&q=60" alt="Hilado artesanal" />
-+          <figcaption>Artesanas hilando lana local.</figcaption>
-+        </figure>
-+        <figure>
-+          <img src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=900&q=60" alt="Vías del tren patagónico" />
-+          <figcaption>El Tren Patagónico atravesando la estepa.</figcaption>
-+        </figure>
-+      </div>
-+    </section>
-+
-+    <section id="productos" class="seccion seccion--clara">
-+      <h2>Productos destacados de Los Menucos</h2>
-+      <div class="grid-tarjetas">
-+        <article class="tarjeta producto">
-+          <h3>Ruanas y mantas de lana merino</h3>
-+          <p>
-+            Tejidos en telares artesanales por la Cooperativa "Hacedoras de la Estepa". Venta en el Mercado de
-+            Productores y online por pedido.
-+          </p>
-+        </article>
-+        <article class="tarjeta producto">
-+          <h3>Mermeladas de frutos silvestres</h3>
-+          <p>
-+            Sabores de rosa mosqueta, calafate y sauco elaborados sin conservantes. Disponibles en ferias
-+            comunitarias y tiendas regionales.
-+          </p>
-+        </article>
-+        <article class="tarjeta producto">
-+          <h3>Piedra laja patagónica</h3>
-+          <p>
-+            Material ornamental extraído de canteras cercanas, ideal para revestimientos y decoración rústica.
-+            Servicios de corte y traslado a todo el país.
-+          </p>
-+        </article>
-+      </div>
-+    </section>
-+
-+    <section id="instituciones" class="seccion">
-+      <h2>Instituciones y servicios</h2>
-+      <div class="instituciones">
-+        <div>
-+          <h3>Educación</h3>
-+          <ul>
-+            <li>Escuela Primaria N° 292 "Luis Piedra Buena"</li>
-+            <li>CEM N° 39 - Orientación en Ciencias Sociales</li>
-+            <li>Centro de Educación Técnica N° 26</li>
-+          </ul>
-+        </div>
-+        <div>
-+          <h3>Salud</h3>
-+          <ul>
-+            <li>Hospital Área Programa Los Menucos</li>
-+            <li>Centro de Atención Primaria "El Jagüel"</li>
-+            <li>Servicio de guardia 24 hs y derivaciones a General Roca</li>
-+          </ul>
-+        </div>
-+        <div>
-+          <h3>Cultura y deporte</h3>
-+          <ul>
-+            <li>Casa de la Cultura "Prof. Ariel Herrero"</li>
-+            <li>Biblioteca Popular Rincón de Lecturas</li>
-+            <li>Polideportivo Municipal y pista de atletismo</li>
-+          </ul>
-+        </div>
-+      </div>
-+    </section>
-+
-+    <section id="informacion" class="seccion seccion--clara">
-+      <h2>Información útil para residentes y visitantes</h2>
-+      <div class="informacion-grid">
-+        <div class="informacion-grid__item">
-+          <h3>Clima y recomendaciones</h3>
-+          <p>
-+            Invierno con temperaturas bajo cero y ocasionales nevadas. Llevar abrigo térmico, protector solar y
-+            mantenerse hidratado. Los vientos fuertes son frecuentes en otoño y primavera.
-+          </p>
-+        </div>
-+        <div class="informacion-grid__item">
-+          <h3>Servicios municipales</h3>
-+          <p>
-+            Atención ciudadana en el Palacio Municipal (Av. 9 de Julio 480). Trámites de habilitaciones
-+            comerciales, documentación y programas de desarrollo local.
-+          </p>
-+        </div>
-+        <div class="informacion-grid__item">
-+          <h3>Emergencias</h3>
-+          <ul class="emergencias">
-+            <li><span>Hospital:</span> 107</li>
-+            <li><span>Bomberos Voluntarios:</span> 100</li>
-+            <li><span>Policía:</span> 101</li>
-+            <li><span>Protección Civil:</span> +54 2920 496200</li>
-+          </ul>
-+        </div>
-+      </div>
-+    </section>
-+  </main>
-+
-+  <footer class="pie">
-+    <div>
-+      <p>&copy; 2025 Portal de Los Menucos</p>
-+      <p>Desarrollado para difundir la identidad y el potencial de la localidad.</p>
-     </div>
--  </section>
--
--  <section id="instituciones">
--    <h2>Instituciones</h2>
--    <ul>
--      <li>Municipalidad de Los Menucos</li>
--      <li>Hospital Área Programa</li>
--      <li>Escuela Primaria N° 292</li>
--    </ul>
--  </section>
--
--  <footer>
--    <p>&copy; 2025 Sitio web de Los Menucos</p>
-   </footer>
--
- </body>
- </html>
- 
-EOF
-)
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Los Menucos</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <header>
+    <h1>Los Menucos</h1>
+    <p>Turismo, productos locales e instituciones</p>
+  </header>
+
+  <nav>
+    <a href="#turismo">Turismo</a>
+    <a href="#productos">Productos</a>
+    <a href="#instituciones">Instituciones</a>
+  </nav>
+
+  <section id="turismo">
+    <h2>Turismo</h2>
+    <p>Descubrí los paisajes, la cultura y la historia de Los Menucos.</p>
+  </section>
+
+  <section id="productos">
+    <h2>Artículos en venta</h2>
+    <div class="producto">
+      <h3>Mermelada de Rosa Mosqueta</h3>
+      <p>Producto artesanal </p>
+      <p>Vendedor: </p>
+    </div>
+    <div class="producto">
+      <h3>Lana Natural Hilada</h3>
+      <p>Hecho a mano - </p>
+      <p>Vendedor: Cooperativa Textil</p>
+    </div>
+  </section>
+
+  <section id="instituciones">
+    <h2>Instituciones</h2>
+    <ul>
+      <li>Municipalidad de Los Menucos</li>
+      <li>Hospital Área Programa</li>
+      <li>Escuela Primaria N° 292</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Sitio web de Los Menucos</p>
+  </footer>
+
+</body>
+</html>
