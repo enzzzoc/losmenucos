@@ -4,6 +4,20 @@
   <meta charset="UTF-8">
   <title>Los Menucos</title>
   <link rel="stylesheet" href="estilo.css">
+  <style>
+    /* Estilos del widget de clima (podés moverlos a estilo.css) */
+    .wx-card{max-width:540px;margin:16px auto;padding:18px;border-radius:16px;box-shadow:0 6px 24px rgba(0,0,0,.08);background:#fff}
+    .wx-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    .wx-title{font-size:1.1rem;font-weight:700}
+    .wx-now{display:flex;align-items:baseline;gap:12px}
+    .wx-temp{font-size:3rem;font-weight:800;line-height:1}
+    .wx-desc{font-size:.95rem;opacity:.85}
+    .wx-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+    .wx-tag{padding:6px 10px;border-radius:999px;background:#f3f4f6;font-size:.9rem}
+    .wx-forecast{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+    .wx-day{padding:10px;border:1px solid #eee;border-radius:12px;text-align:center}
+    .wx-day .muted{opacity:.65}
+  </style>
 </head>
 <body>
 
@@ -16,6 +30,7 @@
     <a href="#turismo">Turismo</a>
     <a href="#productos">Productos</a>
     <a href="#instituciones">Instituciones</a>
+    <a href="#clima">Clima</a>
   </nav>
 
   <section id="turismo">
@@ -24,17 +39,8 @@
   </section>
 
   <section id="productos">
-    <h2>Artículos en venta</h2>
-    <div class="producto">
-      <h3>Mermelada de Rosa Mosqueta</h3>
-      <p>Producto artesanal </p>
-      <p>Vendedor: </p>
-    </div>
-    <div class="producto">
-      <h3>Lana Natural Hilada</h3>
-      <p>Hecho a mano - </p>
-      <p>Vendedor: Cooperativa Textil</p>
-    </div>
+    <div class="producto"></div>
+    <div class="producto"></div>
   </section>
 
   <section id="instituciones">
@@ -46,9 +52,85 @@
     </ul>
   </section>
 
+  <!-- Sección de clima integrada -->
+  <section id="clima">
+    <h2>Clima</h2>
+    <div class="wx-card" id="wx">
+      <div class="wx-header">
+        <div class="wx-title">Clima – Los Menucos, RN</div>
+        <div class="muted" id="wx-upd">—</div>
+      </div>
+      <div class="wx-now">
+        <div class="wx-temp" id="wx-temp">--°C</div>
+        <div class="wx-desc" id="wx-desc">Cargando…</div>
+      </div>
+      <div class="wx-row">
+        <div class="wx-tag" id="wx-wind">Viento: —</div>
+        <div class="wx-tag" id="wx-range">Máx/Min: —</div>
+      </div>
+      <div class="wx-forecast" id="wx-forecast"></div>
+    </div>
+  </section>
+
   <footer>
     <p>&copy; 2025 Sitio web de Los Menucos</p>
   </footer>
 
+  <script>
+    const LAT = -40.85, LON = -68.09;
+    const tz = "America/Argentina/Buenos_Aires";
+
+    const WMO = {
+      0:"Despejado", 1:"Mayormente despejado", 2:"Parcialmente nublado", 3:"Nublado",
+      45:"Neblina", 48:"Neblina escarchada",
+      51:"Llovizna débil", 53:"Llovizna", 55:"Llovizna intensa",
+      61:"Lluvia débil", 63:"Lluvia", 65:"Lluvia intensa",
+      66:"Lluvia helada débil", 67:"Lluvia helada",
+      71:"Nieve débil", 73:"Nieve", 75:"Nieve intensa",
+      77:"Granos de nieve",
+      80:"Chubascos débiles", 81:"Chubascos", 82:"Chubascos intensos",
+      85:"Chubascos de nieve débiles", 86:"Chubascos de nieve intensos",
+      95:"Tormenta", 96:"Tormenta con granizo", 99:"Tormenta con granizo fuerte"
+    };
+
+    async function loadWeather(){
+      try{
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=${encodeURIComponent(tz)}`;
+        const r = await fetch(url);
+        const data = await r.json();
+
+        const c = data.current_weather;
+        const todayMax = data.daily.temperature_2m_max[0];
+        const todayMin = data.daily.temperature_2m_min[0];
+
+        document.getElementById("wx-temp").textContent = Math.round(c.temperature) + "°C";
+        document.getElementById("wx-desc").textContent = WMO[c.weathercode] || "—";
+        document.getElementById("wx-wind").textContent = `Viento: ${Math.round(c.windspeed)} km/h`;
+        document.getElementById("wx-range").textContent = `Máx/Min: ${Math.round(todayMax)}° / ${Math.round(todayMin)}°`;
+        document.getElementById("wx-upd").textContent = `Actualizado: ${new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}`;
+
+        const fc = document.getElementById("wx-forecast");
+        fc.innerHTML = "";
+        for(let i=0;i<4;i++){
+          const d = new Date(data.daily.time[i]);
+          const dow = d.toLocaleDateString('es-AR',{weekday:'short'});
+          const max = Math.round(data.daily.temperature_2m_max[i]);
+          const min = Math.round(data.daily.temperature_2m_min[i]);
+          const desc = WMO[data.daily.weathercode[i]] || "—";
+          const box = document.createElement('div');
+          box.className = 'wx-day';
+          box.innerHTML = `<div class='muted'>${dow}</div>`+
+                          `<div style='font-weight:700'>${max}° / ${min}°</div>`+
+                          `<div class='muted' style='font-size:12px'>${desc}</div>`;
+          fc.appendChild(box);
+        }
+      }catch(err){
+        console.error(err);
+        document.getElementById("wx-desc").textContent = "Sin datos por el momento";
+      }
+    }
+
+    loadWeather();
+  </script>
 </body>
 </html>
