@@ -1,177 +1,140 @@
-/* Reset mínimo */
-* { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
-img { max-width: 100%; display: block; }
-
-/* Tipografía y colores */
-:root {
-  --bg: #f6f8f7;
-  --text: #1f2937;
-  --accent: #1db954; /* verde amable */
-  --accent-contrast: #0f6d31;
-  --surface: #ffffff;
-  --surface-alt: #eef7f1;
-  --border: #e5e7eb;
-}
-
+/* === Estilo general del sitio Los Menucos === */
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  color: var(--text);
-  background: var(--bg);
-  line-height: 1.6;
-}
-
-/* Contenedores */
-.container {
-  width: min(1100px, 92vw);
-  margin: 0 auto;
-  padding: 0 0.25rem;
-}
-
-/* Accesibilidad: enlace para saltar contenido */
-.skip-link {
-  position: absolute;
-  left: -9999px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-.skip-link:focus {
-  left: 1rem;
-  top: 1rem;
-  width: auto;
-  height: auto;
-  padding: 0.5rem 0.75rem;
-  background: #000;
-  color: #fff;
-  border-radius: 6px;
-}
-
-/* Header */
-.site-header {
-  background: linear-gradient(90deg, var(--accent), #42d77a);
-  color: #fff;
-  padding: 2.2rem 0 1.6rem;
-  text-align: center;
-}
-.brand {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-}
-.tagline {
-  margin: 0.35rem 0 0;
-  opacity: 0.95;
+  background: #f7f9fb;
+  color: #222;
 }
 
-/* Navegación */
-.site-nav {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 5;
-}
-.site-nav .container {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 0.75rem 0.5rem;
-}
-.site-nav a {
-  color: var(--text);
-  text-decoration: none;
-  font-weight: 600;
-  padding: 0.4rem 0.75rem;
-  border-radius: 999px;
-}
-.site-nav a:hover {
-  background: var(--surface-alt);
-}
-
-/* Secciones */
-.section {
-  padding: clamp(2rem, 5vw, 3rem) 0;
-  background: var(--surface);
-}
-.section.alt {
-  background: var(--surface-alt);
-}
-.section h2 {
-  margin: 0 0 1rem;
-  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
-}
-
-/* Grillas y tarjetas */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.card {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 1rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-}
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-}
-.card .meta {
-  color: #6b7280;
-  margin-top: -0.35rem;
-  margin-bottom: 0.5rem;
-  font-size: 0.95rem;
-}
-
-/* Botón */
-.btn {
-  display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.55rem 0.9rem;
-  background: var(--accent);
+header {
+  background-color: #003366;
   color: #fff;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-}
-.btn:hover {
-  background: var(--accent-contrast);
-}
-
-/* Lista de instituciones */
-.lista-instituciones {
-  display: grid;
-  gap: 0.5rem;
-  padding-left: 1rem;
-}
-
-/* Footer */
-.site-footer {
-  background: #0f172a;
-  color: #e2e8f0;
   text-align: center;
-  padding: 1.6rem 0;
-}
-.site-footer p {
-  margin: 0.2rem 0;
+  padding: 20px 10px;
 }
 
-/* Preferencias de usuario: reducción de movimiento */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
-    animation: none !important;
-  }
+nav {
+  background: #005fa3;
+  text-align: center;
+  padding: 10px 0;
 }
 
-/* Ancla suave */
-html {
-  scroll-behavior: smooth;
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #ffd966;
+}
+
+section {
+  padding: 20px;
+  background: #fff;
+  margin: 20px auto;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  max-width: 900px;
+}
+
+h2 {
+  color: #005fa3;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 6px;
+}
+
+footer {
+  background: #003366;
+  color: #fff;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+}
+
+/* === Productos === */
+.producto {
+  background: #f3f4f6;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+}
+
+/* === Clima === */
+.wx-card {
+  max-width: 540px;
+  margin: 16px auto;
+  padding: 18px;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0,0,0,.08);
+  background: #fff;
+}
+
+.wx-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.wx-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.wx-now {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.wx-temp {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #005fa3;
+}
+
+.wx-desc {
+  font-size: .95rem;
+  opacity: .85;
+}
+
+.wx-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.wx-tag {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  font-size: .9rem;
+}
+
+.wx-forecast {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.wx-day {
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.wx-day .muted {
+  opacity: .65;
+}
+
+@media (max-width: 560px) {
+  .wx-temp { font-size: 2.4rem; }
+  .wx-forecast { grid-template-columns: repeat(2,1fr); }
 }
